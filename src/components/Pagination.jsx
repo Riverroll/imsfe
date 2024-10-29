@@ -1,31 +1,27 @@
 // src/components/Pagination.jsx
 import React from 'react';
-import { Home, Dashboard, User, Settings, FileText } from 'lucide-react'; // Import the icons
+import { Home, BarChart2, User, Settings, DollarSign } from 'lucide-react';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  // Icons for pagination
-  const pageIcons = [
-    <Home key="home" className="h-5 w-5" />,
-    <Dashboard key="dashboard" className="h-5 w-5" />,
-    <User key="user" className="h-5 w-5" />,
-    <Settings key="settings" className="h-5 w-5" />,
-    <FileText key="sales" className="h-5 w-5" />
-  ];
+  // Define the icons corresponding to each "page"
+  const icons = [<Home />, <BarChart2 />, <User />, <Settings />, <DollarSign />];
 
   return (
-    <ul className="menu menu-horizontal bg-base-200 rounded-box">
-      {/* Page Number Icons */}
-      {Array.from({ length: totalPages }, (_, index) => (
-        <li key={index}>
-          <a
-            onClick={() => onPageChange(index + 1)}
-            className={currentPage === index + 1 ? 'btn btn-primary' : ''}
-          >
-            {pageIcons[index]} {/* Display the corresponding icon */}
-          </a>
-        </li>
-      ))}
-    </ul>
+    <div className="flex justify-center mt-4">
+      <ul className="menu menu-horizontal bg-base-200 rounded-box">
+        {/* Icon Buttons */}
+        {icons.slice(0, totalPages).map((icon, index) => (
+          <li key={index}>
+            <a
+              onClick={() => onPageChange(index + 1)}
+              className={currentPage === index + 1 ? 'btn btn-primary' : 'btn'}
+            >
+              {React.cloneElement(icon, { className: 'h-5 w-5' })}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

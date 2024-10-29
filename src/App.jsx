@@ -1,11 +1,15 @@
-// src/App.jsx
+// App.jsx
 import React from 'react';
 import MainLayout from './components/MainLayout';
+import Dashboard from './pages/Dashboard';
 
-const App = () => {
+function App() {
   return (
-    <MainLayout />
+    <MainLayout>
+      <Dashboard />
+      {/* You can add more components here if needed */}
+    </MainLayout>
   );
-};
+}
 
-export default App; // Make sure this line is present
+export default App;
